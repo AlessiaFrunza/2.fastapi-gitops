@@ -1,0 +1,28 @@
+replicaCount: 1
+
+image:
+  repository: fastapi-gitops-starter
+  tag: "v0.4"
+  pullPolicy: Never
+
+imagePullSecrets: []
+
+registry:
+  createImagePullSecret: false
+
+ingress:
+  enabled: true
+  hosts:
+    - host: minikube.test
+      paths:
+        - path: /GitOps-Starter
+          pathType: Prefix
+
+app:
+  rootPath: "/GitOps-Starter"
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 10
